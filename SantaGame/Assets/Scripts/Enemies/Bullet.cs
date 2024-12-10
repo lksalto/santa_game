@@ -20,7 +20,8 @@ public class Bullet : MonoBehaviour
 
     public void MoveBullet()
     {
-        transform.position += -transform.up * speed * Time.deltaTime;
+        transform.position += -transform.up  * speed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -4);
     }
 
     public void SetDmg(int dmg)

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMono : MonoBehaviour
+public class BossGenius : MonoBehaviour
 {
-
     [SerializeField] int dmg;
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject projectilePrefab;
@@ -18,7 +17,7 @@ public class EnemyMono : MonoBehaviour
 
     IEnumerator ShootProjectile()
     {
-        GameObject bullet = Instantiate(projectilePrefab, spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
+        GameObject bullet = Instantiate(projectilePrefab, spawnPoint.position, transform.rotation);
         bullet.GetComponent<Bullet>().SetDmg(dmg);
         bullet.GetComponent<Bullet>().SetSpeed(bulletSpeed);
         bullet.transform.parent = null;

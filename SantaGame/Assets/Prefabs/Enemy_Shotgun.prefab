@@ -138,9 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
-  bulletSpeed: 1
+  bulletSpeed: -2
   projectilePrefab: {fileID: 8324794095272616715, guid: e020f0d261f383547a87f9c52154380c, type: 3}
   atkCd: 1
+  spawnPoint: {fileID: 441781593042025176}
 --- !u!114 &8503834861492713261
 MonoBehaviour:
   m_ObjectHideFlags: 0

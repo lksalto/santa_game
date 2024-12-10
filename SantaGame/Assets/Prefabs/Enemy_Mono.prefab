@@ -164,6 +164,7 @@ MonoBehaviour:
   bulletSpeed: 3
   projectilePrefab: {fileID: 8324794095272616715, guid: b254a319e0896484ea029dec86a00c16, type: 3}
   atkCd: 0.8
+  spawnPoint: {fileID: 2806966395777826212}
 --- !u!1 &5773954379565856757
 GameObject:
   m_ObjectHideFlags: 0
