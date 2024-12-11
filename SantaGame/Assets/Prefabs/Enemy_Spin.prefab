@@ -207,7 +207,7 @@ MonoBehaviour:
   dmg: 1
   bulletSpeed: 2
   projectilePrefab: {fileID: 8324794095272616715, guid: 437540c073392f44eba07eaf87a44076, type: 3}
-  atkCd: 0.08
+  atkCd: 0.05
   spawnPoint: {fileID: 2806966395777826212}
 --- !u!50 &9023223694979537047
 Rigidbody2D:

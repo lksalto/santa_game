@@ -13,7 +13,7 @@ public class LaserCannon : MonoBehaviour
     [SerializeField] float laserDuration = 0.5f;
     private void Start()
     {
-        rechargeCd = rechargeTime;
+        rechargeCd = 0;
     }
     void Update()
     {

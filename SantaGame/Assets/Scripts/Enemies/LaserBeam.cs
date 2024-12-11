@@ -6,8 +6,15 @@ public class LaserBeam : MonoBehaviour
 {
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-        Destroy(collision.gameObject);
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.GetComponent<PlayerLife>().TakeHit(10);
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+
+        }
 
     }
 }
