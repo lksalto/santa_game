@@ -30,6 +30,7 @@ public class PlayerDash : MonoBehaviour
         {
             lineRenderer.enabled = false; // Start with the line hidden
         }
+        lastDashTime = -dashCooldown;
     }
 
     private void Update()

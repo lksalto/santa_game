@@ -12,6 +12,8 @@ public class NextLevel : MonoBehaviour
     }
     public void Activate()
     {
+
+        active = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.green;
         
         GetComponent<BoxCollider2D>().enabled = true;
@@ -19,7 +21,7 @@ public class NextLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && active)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

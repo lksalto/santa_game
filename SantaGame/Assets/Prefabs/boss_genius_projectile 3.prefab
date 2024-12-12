@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1188631696510247444}
   m_Layer: 0
   m_Name: enemy_projectile (1)
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4431244981987924558}
   m_Layer: 0
   m_Name: enemy_projectile
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 6561791328739043723}
   m_Layer: 0
   m_Name: boss_genius_projectile 3
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

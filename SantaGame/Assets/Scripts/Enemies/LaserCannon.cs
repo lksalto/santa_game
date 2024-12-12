@@ -11,6 +11,7 @@ public class LaserCannon : MonoBehaviour
     [SerializeField] List<GameObject> prefabs;
     [SerializeField] Transform spawnPoint;
     [SerializeField] float laserDuration = 0.5f;
+    [SerializeField] GameObject aim;
     private void Start()
     {
         rechargeCd = 0;
@@ -18,26 +19,33 @@ public class LaserCannon : MonoBehaviour
     void Update()
     {
         rechargeCd -= Time.deltaTime;
+        if(rechargeCd < 0)
+        {
+            aim.gameObject.SetActive(true);
+        }
     }
 
 
     IEnumerator ShootLaser()
     {
         GameObject aimPrefab = Instantiate(prefabs[0], spawnPoint.position + new Vector3(0,0,-4), transform.rotation);
+        aimPrefab.transform.parent = spawnPoint.transform;
         aimPrefab.GetComponentInChildren<FadeInFadeOut>().fadeDuration = cd;
         yield return new WaitForSeconds(cd);
         Destroy(aimPrefab);
         GameObject laserPrefab = Instantiate(prefabs[1], spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
+        laserPrefab.transform.parent = spawnPoint.transform;
         Destroy(laserPrefab, laserDuration);
 
 
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(rechargeCd < 0 && collision.gameObject.CompareTag("Player"))
+        if(rechargeCd < 0 && collision.gameObject.CompareTag("Detector"))
         {
             rechargeCd = rechargeTime;
             StartCoroutine(ShootLaser());
+            aim.gameObject.SetActive(false);
         }
         
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossGenius : MonoBehaviour
+public class GeniusAim : MonoBehaviour
 {
     [SerializeField] int dmg;
     [SerializeField] float bulletSpeed;

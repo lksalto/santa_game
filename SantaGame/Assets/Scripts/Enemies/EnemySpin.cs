@@ -7,11 +7,11 @@ public class EnemySpin : MonoBehaviour
 {
     public float spinSpeed = 360f; // Speed of rotation in degrees per second
     public float lifeSpan = 10f;
-
+    bool isDestructable = false;
 
     private void Start()
     {
-        Destroy(gameObject, lifeSpan);
+        
     }
     void Update()
     {

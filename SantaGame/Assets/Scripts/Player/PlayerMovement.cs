@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
+    [SerializeField] public float speed = 5f;
     public float getSpeed() { return speed; }
     // Define the movement bounds (replace these values with your desired range)
     public float minY = -3.7f; // Minimum x boundary

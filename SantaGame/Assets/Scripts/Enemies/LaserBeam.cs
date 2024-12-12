@@ -10,7 +10,17 @@ public class LaserBeam : MonoBehaviour
         {
             collision.GetComponent<PlayerLife>().TakeHit(10);
         }
-        else
+        else if(collision.gameObject.CompareTag("Genius"))
+        {
+            //Debug.Log("HIT BOSS");
+            if(collision.GetComponent<BossStateMachine>().canAttack)
+            {
+                //collision.GetComponent<CircleCollider2D>().enabled = false;
+                collision.GetComponent<BossStateMachine>().TakeDamage(13);
+            }
+            
+        }
+        else if(collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
 

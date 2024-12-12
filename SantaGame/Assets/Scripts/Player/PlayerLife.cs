@@ -51,8 +51,8 @@ public class PlayerLife : MonoBehaviour
             if(life <= 0)
             {
                 life = 0;
-                menu.ShowRestart();
-                Destroy(gameObject);
+                StartCoroutine(Die());
+
             }
         }
 
@@ -73,6 +73,18 @@ public class PlayerLife : MonoBehaviour
         
         yield return new WaitForSeconds(invulnerabilityCd);
         
+
+    }
+
+    IEnumerator Die()
+    {
+        sr.enabled = false;
+        GetComponent<LineRenderer>().enabled = false;
+        GetComponent<PlayerMovement>().speed = 0;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1);
+        menu.ShowRestart();
+        Destroy(gameObject);
 
     }
 
