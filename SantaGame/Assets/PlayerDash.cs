@@ -7,6 +7,7 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private float dashDistance = 5f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
+    public bool showDash = true;
     private CapsuleCollider2D cc2d;
     private bool isDashing = false;
     private float lastDashTime;
@@ -16,9 +17,10 @@ public class PlayerDash : MonoBehaviour
     private PlayerLife playerLife;
 
     private LineRenderer lineRenderer; // LineRenderer component
-
+    SoundManager soundManager;
     private void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.sprite = sprites[0];
         cc2d = GetComponent<CapsuleCollider2D>();
@@ -37,6 +39,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= lastDashTime + dashCooldown)
         {
+            soundManager.PlaySound(3);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = transform.position.z;
 
@@ -50,16 +53,23 @@ public class PlayerDash : MonoBehaviour
             StartCoroutine(Dash(targetPosition));
             lastDashTime = Time.time;
         }
-
-        if(Time.time >= lastDashTime + dashCooldown)
+        if(showDash)
         {
-            UpdateTrajectoryLine();
+            if (Time.time >= lastDashTime + dashCooldown)
+            {
+                UpdateTrajectoryLine();
+            }
+            else
+            {
+                HideTrajectoryLine();
+            }
         }
         else
         {
             HideTrajectoryLine();
         }
-        
+
+
 
     }
 

@@ -33,9 +33,9 @@ public class Bullet : MonoBehaviour
         this.speed = speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerLife>().TakeHit(dmg);
             //ADD PARTICULA

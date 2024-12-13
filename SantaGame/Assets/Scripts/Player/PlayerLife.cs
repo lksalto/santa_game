@@ -19,12 +19,15 @@ public class PlayerLife : MonoBehaviour
 
     [SerializeField] Resources resources;
     Menu menu;
-
+    SlowMotion slowMotion;
     Camera cam;
+    SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
-       menu = FindObjectOfType<Menu>();
+        soundManager = FindObjectOfType<SoundManager>();
+        slowMotion = GetComponent<SlowMotion>();
+        menu = FindObjectOfType<Menu>();
         cam = Camera.main;
         originalSprite= sprites[0];
         dmgSprite = sprites[1];
@@ -42,7 +45,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(canTakeDamage)
         {
-            
+            soundManager.PlaySound(0);
             life -= dmg;
             Flash();
             cam.GetComponent<CameraShake>().StartShake();
@@ -50,9 +53,13 @@ public class PlayerLife : MonoBehaviour
             resources.atualizaVida(life);
             if(life <= 0)
             {
-                life = 0;
+                
                 StartCoroutine(Die());
-
+                resources.atualizaVida(life);
+            }
+            else
+            {
+                slowMotion.SlowMo();
             }
         }
 
@@ -61,6 +68,7 @@ public class PlayerLife : MonoBehaviour
     
     IEnumerator Invulnerability(float invulnerabilityCd)
     {
+        soundManager.PlaySound(1);
         canTakeDamage = false;
         sr.sprite = dmgSprite;
         yield return new WaitForSeconds(invulnerabilityCd);
@@ -78,9 +86,13 @@ public class PlayerLife : MonoBehaviour
 
     IEnumerator Die()
     {
+        soundManager.PlaySound(0);
         sr.enabled = false;
+        GetComponent<PlayerDash>().showDash = false;
         GetComponent<LineRenderer>().enabled = false;
         GetComponent<PlayerMovement>().speed = 0;
+
+        //GetComponent<PlayerDash>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
         yield return new WaitForSeconds(1);
         menu.ShowRestart();

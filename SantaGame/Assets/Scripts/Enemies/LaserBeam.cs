@@ -20,7 +20,7 @@ public class LaserBeam : MonoBehaviour
             }
             
         }
-        else if(collision.gameObject.CompareTag("Bullet"))
+        else if(collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Gun"))
         {
             Destroy(collision.gameObject);
 

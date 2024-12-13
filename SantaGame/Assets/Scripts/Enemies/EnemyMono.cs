@@ -30,11 +30,12 @@ public class EnemyMono : MonoBehaviour
     {
         if(canShoot)
         {
+
+            yield return new WaitForSeconds(atkCd);
             GameObject bullet = Instantiate(projectilePrefab, spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
             bullet.GetComponent<Bullet>().SetDmg(dmg);
             bullet.GetComponent<Bullet>().SetSpeed(bulletSpeed);
             bullet.transform.parent = null;
-            yield return new WaitForSeconds(atkCd);
             StartCoroutine(ShootProjectile());
         }
 

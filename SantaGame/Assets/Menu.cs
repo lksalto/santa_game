@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     [SerializeField] GameObject miniMenu;
-
+    
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(miniMenu != null)
             {
-                miniMenu.SetActive(true);
+                miniMenu.SetActive(!miniMenu.active);
             }
         }
     }
@@ -30,4 +30,6 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(idx);
     }
+
+
 }

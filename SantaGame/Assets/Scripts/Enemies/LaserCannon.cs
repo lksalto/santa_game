@@ -12,41 +12,71 @@ public class LaserCannon : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] float laserDuration = 0.5f;
     [SerializeField] GameObject aim;
+
+    [SerializeField] List<AudioClip> chargeSounds;
+    [SerializeField] List<AudioClip> beamSounds;
+
+    SoundManager soundManager;
+    AudioSource mySource;
+    
+
+    // Flag to track when the laser is ready to fire
+    private bool isLaserReady = false;
+
     private void Start()
     {
+        mySource = GetComponent<AudioSource>();
+        soundManager = FindObjectOfType<SoundManager>();
+        mySource.volume = soundManager.vol;
+
         rechargeCd = 0;
+        isLaserReady = true; // Start ready to fire
     }
-    void Update()
+
+    void FixedUpdate()
     {
         rechargeCd -= Time.deltaTime;
-        if(rechargeCd < 0)
+
+        if (rechargeCd < 0 && !isLaserReady)
         {
+            // Reset laser readiness
+            isLaserReady = true;
             aim.gameObject.SetActive(true);
         }
     }
 
-
     IEnumerator ShootLaser()
     {
-        GameObject aimPrefab = Instantiate(prefabs[0], spawnPoint.position + new Vector3(0,0,-4), transform.rotation);
+        // Instantiate aim effect
+        int sorteio = Random.Range(0, chargeSounds.Count);
+        mySource.PlayOneShot(chargeSounds[sorteio]);
+        GameObject aimPrefab = Instantiate(prefabs[0], spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
         aimPrefab.transform.parent = spawnPoint.transform;
         aimPrefab.GetComponentInChildren<FadeInFadeOut>().fadeDuration = cd;
-        yield return new WaitForSeconds(cd);
+        yield return new WaitForSeconds(chargeSounds[sorteio].length);
+
+        // Destroy aim effect
         Destroy(aimPrefab);
+
+        // Instantiate laser effect
         GameObject laserPrefab = Instantiate(prefabs[1], spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
+        sorteio = Random.Range(0, beamSounds.Count);
+        mySource.PlayOneShot(beamSounds[sorteio]);
         laserPrefab.transform.parent = spawnPoint.transform;
-        Destroy(laserPrefab, laserDuration);
 
-
+        // Destroy laser after its duration
+        Destroy(laserPrefab, beamSounds[sorteio].length);
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(rechargeCd < 0 && collision.gameObject.CompareTag("Detector"))
+        if (isLaserReady && collision.gameObject.CompareTag("Detector"))
         {
+            // Reset cooldown and shoot laser
             rechargeCd = rechargeTime;
+            isLaserReady = false;
             StartCoroutine(ShootLaser());
             aim.gameObject.SetActive(false);
         }
-        
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Genius
   - Bullet
   - Detector
+  - Gun
   layers:
   - Default
   - TransparentFX

@@ -94,7 +94,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03679064, y: 0}
@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 622563137472216719}
   - component: {fileID: 5416528636781360590}
   - component: {fileID: 5009400542199947856}
+  - component: {fileID: 2070708899848205974}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -288,7 +289,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.031317208, y: -0.022776121}
@@ -348,6 +349,7 @@ MonoBehaviour:
   dashDistance: 3
   dashDuration: 0.2
   dashCooldown: 1
+  showDash: 1
   sprites:
   - {fileID: -1030812275, guid: 1ca177413ab30f6459aa270174bf895d, type: 3}
   - {fileID: 21300000, guid: abb1f2a07592ef04e97b0ce8b9ec8604, type: 3}
@@ -455,3 +457,17 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2070708899848205974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6235764652447891181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fe764423128104185c29e399b411a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowMotionFactor: 0.5
+  slowMotionDuration: 0.7

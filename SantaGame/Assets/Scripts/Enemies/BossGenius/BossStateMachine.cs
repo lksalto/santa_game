@@ -21,15 +21,18 @@ public class BossStateMachine : MonoBehaviour
     //[SerializeField] public FollowPlayerWithDistance follow;
     [SerializeField] public List<EnemyMono> shotguns;
 
-
+    [SerializeField] GameObject keyPrefab;
+    [SerializeField] GameObject nextLvlPrefab;
 
     [SerializeField] SpriteRenderer sr;
     public List<Sprite> sprites;
     public Sprite currentSprite;
- 
+
+    SoundManager soundManager;
+
     private void Start()
     {
-        
+        soundManager = FindObjectOfType<SoundManager>();
         currentState = phase1;
         currentState.EnterState(this);
         
@@ -48,10 +51,7 @@ public class BossStateMachine : MonoBehaviour
     public IEnumerator ChooseSong() {
 
         yield return new WaitForSeconds(0.1f);
-        if (FindObjectOfType<AudioManager>().GetComponent<AudioSource>().clip.name != theme.name) {
-            FindObjectOfType<AudioManager>().PlayMusic(theme);
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().PlayScheduled(AudioSettings.dspTime + theme.length);
-        }
+
 
 
 
@@ -64,6 +64,7 @@ public class BossStateMachine : MonoBehaviour
 
     public void TransitionToState(IBossState state)
     {
+        
         currentState?.ExitState(this);
         currentState = state;
         currentState.EnterState(this);
@@ -74,6 +75,7 @@ public class BossStateMachine : MonoBehaviour
         life -= dmg;
         StartCoroutine(Flash(flashCd));
         currentState?.CheckStateTransition(this);
+        soundManager.PlaySound(4);
 
     }
 
@@ -97,6 +99,14 @@ public class BossStateMachine : MonoBehaviour
 
     public void Die()
     {
+        GameObject nxt = Instantiate(nextLvlPrefab, transform.position, Quaternion.identity); 
+        GameObject key = Instantiate(keyPrefab, transform.position , Quaternion.identity);
+        nxt.transform.parent = null;
+        key.transform.parent = null;
+
+        nxt.transform.position = new Vector3(999,999,999);
+        
+
         Destroy(gameObject);
     }
 
