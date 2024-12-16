@@ -6,9 +6,9 @@ public class EnemyMono : MonoBehaviour
 {
 
     [SerializeField] int dmg;
-    [SerializeField] float bulletSpeed;
+    [SerializeField] public float bulletSpeed;
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] float atkCd = 0.5f;
+    [SerializeField] public float atkCd = 0.5f;
     [SerializeField] Transform spawnPoint;
     public bool canShoot = true;
     // Start is called before the first frame update

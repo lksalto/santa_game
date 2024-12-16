@@ -45,7 +45,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(canTakeDamage)
         {
-            soundManager.PlaySound(0);
+            soundManager?.PlaySound(0);
             life -= dmg;
             Flash();
             cam.GetComponent<CameraShake>().StartShake();
@@ -68,7 +68,7 @@ public class PlayerLife : MonoBehaviour
     
     IEnumerator Invulnerability(float invulnerabilityCd)
     {
-        soundManager.PlaySound(1);
+        soundManager?.PlaySound(1);
         canTakeDamage = false;
         sr.sprite = dmgSprite;
         yield return new WaitForSeconds(invulnerabilityCd);
@@ -84,9 +84,10 @@ public class PlayerLife : MonoBehaviour
 
     }
 
-    IEnumerator Die()
+    public IEnumerator Die()
     {
-        soundManager.PlaySound(0);
+        TakeHit(0);
+        soundManager?.PlaySound(0);
         sr.enabled = false;
         GetComponent<PlayerDash>().showDash = false;
         GetComponent<LineRenderer>().enabled = false;
@@ -97,6 +98,14 @@ public class PlayerLife : MonoBehaviour
         yield return new WaitForSeconds(1);
         menu.ShowRestart();
         Destroy(gameObject);
+
+    }
+
+    public void HitWall()
+    {
+        cam.GetComponent<CameraShake>().StartShake();
+        StartCoroutine(Die());
+
 
     }
 

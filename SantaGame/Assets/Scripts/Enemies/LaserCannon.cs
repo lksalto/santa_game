@@ -27,7 +27,11 @@ public class LaserCannon : MonoBehaviour
     {
         mySource = GetComponent<AudioSource>();
         soundManager = FindObjectOfType<SoundManager>();
-        mySource.volume = soundManager.vol;
+        if(soundManager != null )
+        {
+            mySource.volume = soundManager.vol;
+        }
+        
 
         rechargeCd = 0;
         isLaserReady = true; // Start ready to fire
@@ -49,7 +53,7 @@ public class LaserCannon : MonoBehaviour
     {
         // Instantiate aim effect
         int sorteio = Random.Range(0, chargeSounds.Count);
-        mySource.PlayOneShot(chargeSounds[sorteio]);
+        mySource?.PlayOneShot(chargeSounds[sorteio]);
         GameObject aimPrefab = Instantiate(prefabs[0], spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
         aimPrefab.transform.parent = spawnPoint.transform;
         aimPrefab.GetComponentInChildren<FadeInFadeOut>().fadeDuration = cd;
@@ -61,7 +65,7 @@ public class LaserCannon : MonoBehaviour
         // Instantiate laser effect
         GameObject laserPrefab = Instantiate(prefabs[1], spawnPoint.position + new Vector3(0, 0, -4), transform.rotation);
         sorteio = Random.Range(0, beamSounds.Count);
-        mySource.PlayOneShot(beamSounds[sorteio]);
+        mySource?.PlayOneShot(beamSounds[sorteio]);
         laserPrefab.transform.parent = spawnPoint.transform;
 
         // Destroy laser after its duration

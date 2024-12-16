@@ -22,7 +22,7 @@ public class BossStateMachine : MonoBehaviour
     [SerializeField] public List<EnemyMono> shotguns;
 
     [SerializeField] GameObject keyPrefab;
-    [SerializeField] GameObject nextLvlPrefab;
+    
 
     [SerializeField] SpriteRenderer sr;
     public List<Sprite> sprites;
@@ -75,7 +75,7 @@ public class BossStateMachine : MonoBehaviour
         life -= dmg;
         StartCoroutine(Flash(flashCd));
         currentState?.CheckStateTransition(this);
-        soundManager.PlaySound(4);
+        soundManager?.PlaySound(4);
 
     }
 
@@ -99,12 +99,12 @@ public class BossStateMachine : MonoBehaviour
 
     public void Die()
     {
-        GameObject nxt = Instantiate(nextLvlPrefab, transform.position, Quaternion.identity); 
+        
         GameObject key = Instantiate(keyPrefab, transform.position , Quaternion.identity);
-        nxt.transform.parent = null;
+        
         key.transform.parent = null;
 
-        nxt.transform.position = new Vector3(999,999,999);
+
         
 
         Destroy(gameObject);

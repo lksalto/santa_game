@@ -8,6 +8,7 @@ public class MonoSpawner : MonoBehaviour
     [SerializeField] float monoSpeed;
     [SerializeField] GameObject monoPrefab;
     [SerializeField] float cd = 1;
+    [SerializeField] float monoAtkCd = 0;
     float cdTimer;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,12 @@ public class MonoSpawner : MonoBehaviour
             else
             {
                 mono.GetComponent<EnemyMovement>().xMoveSpeed = monoSpeed;
+            }
+
+            if(monoAtkCd > 0)
+            {
+                mono.GetComponent<EnemyMono>().atkCd = monoAtkCd;
+                mono.GetComponent<EnemyMono>().bulletSpeed = 5 / monoAtkCd;
             }
             
         }

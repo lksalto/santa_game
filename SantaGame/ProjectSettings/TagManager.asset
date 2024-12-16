@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Detector
   - Gun
+  - Wall
+  - Granade
   layers:
   - Default
   - TransparentFX

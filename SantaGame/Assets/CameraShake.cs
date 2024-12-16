@@ -19,7 +19,7 @@ public class CameraShake : MonoBehaviour
     private void Start()
     {
         // Store the initial position of the camera
-        originalPosition = transform.localPosition;
+        originalPosition = new Vector3(0,0,-10);
     }
 
     private void Update()

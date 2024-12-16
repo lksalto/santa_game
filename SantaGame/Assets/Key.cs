@@ -24,7 +24,7 @@ public class Key : MonoBehaviour
 
     private void OnDestroy()
     {
-        soundManager.PlaySound(2);
+        soundManager?.PlaySound(2);
         if(seta)
         {
             seta.SetActive(true);

@@ -39,7 +39,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= lastDashTime + dashCooldown)
         {
-            soundManager.PlaySound(3);
+            soundManager?.PlaySound(3);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = transform.position.z;
 
