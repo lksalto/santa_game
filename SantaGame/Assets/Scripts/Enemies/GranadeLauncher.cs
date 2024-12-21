@@ -19,11 +19,11 @@ public class GranadeLauncher : MonoBehaviour
 
     IEnumerator Attack()
     {
+
+        yield return new WaitForSeconds(Random.Range(minCd, maxCd));
+
         GameObject granade = Instantiate(granadePrefab, transform.position, Quaternion.identity);
         granade.transform.parent = null;
-        yield return new WaitForSeconds(Random.Range(minCd, maxCd));
-        
-        
         StartCoroutine(Attack());
     }
 

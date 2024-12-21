@@ -12,7 +12,7 @@ public class SpeedrunClock : MonoBehaviour
     public bool isSpeedRunning = true;
     // Singleton instance
     public static SpeedrunClock Instance;
-
+    public int pLife = 3;
     void Awake()
     {
         // Singleton setup to persist across scenes
@@ -46,12 +46,10 @@ public class SpeedrunClock : MonoBehaviour
     {
         if (isRunning)
         {
-            if(isSpeedRunning)
-            {   // Increment elapsed time using unscaledDeltaTime
-                elapsedTime += Time.unscaledDeltaTime;
-                UpdateClockDisplay();
+   // Increment elapsed time using unscaledDeltaTime
+            elapsedTime += Time.unscaledDeltaTime;
+            UpdateClockDisplay();
 
-            }
 
         }
 
@@ -59,17 +57,12 @@ public class SpeedrunClock : MonoBehaviour
 
     public void StartClock()
     {
-        if(isSpeedRunning)
+
+        if (passedTutorial) // Only start if tutorial is passed
         {
-            if (passedTutorial) // Only start if tutorial is passed
-            {
-                isRunning = true;
-            }
+            isRunning = true;
         }
-        else
-        {
-            clockText.text = "--:--:----";
-        }
+
 
     }
 
@@ -82,6 +75,7 @@ public class SpeedrunClock : MonoBehaviour
     {
         elapsedTime = 0f;
         UpdateClockDisplay();
+
     }
 
     private void UpdateClockDisplay()
@@ -97,6 +91,7 @@ public class SpeedrunClock : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        
         // Check if the current scene is the "Tutorial" scene
         if (scene.name == "Tutorial")
         {
@@ -110,9 +105,25 @@ public class SpeedrunClock : MonoBehaviour
             ResetClock();
             StopClock();
         }
+        SetPlayerLife(pLife);
     }
     public void SetClock(bool b)
     {
         isSpeedRunning = b;
+    }
+
+    public void SetPlayerLife(int x = 3)
+    {
+        PlayerLife player = FindObjectOfType<PlayerLife>();
+        if(player != null)
+        {
+            player.life = x;
+        }
+
+    }
+
+    public void SetPLife(int v)
+    {
+        pLife = v;
     }
 }

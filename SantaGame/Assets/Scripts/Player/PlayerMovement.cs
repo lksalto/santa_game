@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float speed = 5f;
     public float getSpeed() { return speed; }
     // Define the movement bounds (replace these values with your desired range)
-    public float minY = -3.7f; // Minimum x boundary
+    public float minY = -3.8f; // Minimum x boundary
     public float maxY = 3.7f;  // Maximum x boundary
-    public float minX = -7.2f; // Minimum y boundary
-    public float maxX = 7.2f;  // Maximum y boundary
+    public float minX = -7.68f; // Minimum y boundary
+    public float maxX = 7.68f;  // Maximum y boundary
 
     float xVelocity, yVelocity;
     private void Awake()

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public GameObject menu;
+    public int pLife = 3;
     [SerializeField] GameObject miniMenu;
     
     private void Update()
@@ -30,6 +32,14 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(idx);
     }
-
+    public void SetPLife(int v)
+    {
+        FindObjectOfType<SpeedrunClock>().pLife = v;
+        //pLife = v;
+    }
+    public void showMenu()
+    {
+        menu.SetActive(true);
+    }
 
 }

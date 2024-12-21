@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+
+
+
+    
+     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("wall");
+
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Detector"))
         {
             collision.gameObject.GetComponentInParent<PlayerLife>().HitWall();
@@ -16,5 +21,17 @@ public class Wall : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
+
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("COLISAO");
+        if (collision.gameObject.CompareTag("RubberBall"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
 }

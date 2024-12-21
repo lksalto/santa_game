@@ -61,6 +61,7 @@ public class PlayerLife : MonoBehaviour
             {
                 slowMotion.SlowMo();
             }
+            resources.atualizaVida(life);
         }
 
         
@@ -92,8 +93,8 @@ public class PlayerLife : MonoBehaviour
         GetComponent<PlayerDash>().showDash = false;
         GetComponent<LineRenderer>().enabled = false;
         GetComponent<PlayerMovement>().speed = 0;
-
-        //GetComponent<PlayerDash>().enabled = false;
+        //GetComponent<PlayerDash>().gameObject.SetActive(false);
+        GetComponent<PlayerDash>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
         yield return new WaitForSeconds(1);
         menu.ShowRestart();

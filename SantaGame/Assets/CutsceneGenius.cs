@@ -29,9 +29,9 @@ public class CutsceneGenius : MonoBehaviour
 
     private void Update()
     {
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 5, speed * Time.deltaTime);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 6, speed * Time.deltaTime);
         cam.transform.position = Vector3.MoveTowards(cam.transform.position, new Vector3(0,0,-10), speed * Time.deltaTime);
-        boss.transform.position = Vector3.MoveTowards(boss.transform.position, keyTransform.position, speed * Time.deltaTime);
+        boss.transform.position = Vector3.MoveTowards(boss.transform.position, keyTransform.position + new Vector3(0,0,-2), speed * Time.deltaTime);
         StartCoroutine(StartGame());
     }
 

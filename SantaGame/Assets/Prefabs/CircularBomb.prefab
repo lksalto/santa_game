@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8324794095272616715, guid: b254a319e0896484ea029dec86a00c16, type: 3}
-  bulletQtty: 60
+  bulletQtty: 40
   bulletSpeed: 2
   bulletDmg: 1
   bombCd: 8

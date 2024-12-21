@@ -66,12 +66,18 @@ public class MusicManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         string newSceneName = scene.name;
-
+        
         if (newSceneName != currentSceneName)
         {
             currentSceneName = newSceneName;
             UpdateMusicForScene(newSceneName);
         }
+        GameObject s = GameObject.FindGameObjectWithTag("VolumeSlider");
+        if (s != null)
+        {
+            slider = s.GetComponent<Slider>();
+        }
+
     }
 
     void UpdateMusicForScene(string sceneName)

@@ -22,14 +22,7 @@ public class CameraShake : MonoBehaviour
         originalPosition = new Vector3(0,0,-10);
     }
 
-    private void Update()
-    {
-        // Example: Trigger shake with a key press (for testing purposes)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartShake();
-        }
-    }
+
 
     public void StartShake()
     {

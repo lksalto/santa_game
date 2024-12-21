@@ -22,10 +22,6 @@ public class SlowMotion : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isSlowMotionActive)
-        {
-            StartCoroutine(ActivateSlowMotion());
-        }
 
     }
 

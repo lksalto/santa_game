@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+    [SerializeField] List<Sprite> sprites;
+    SpriteRenderer sr;
     [SerializeField] bool active = false;
     private void Start()
     {
-        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        sr = GetComponentInChildren<SpriteRenderer>();
+        sr.sprite = sprites[0];
+        
     }
     public void Activate()
     {
 
         active = true;
-        GetComponentInChildren<SpriteRenderer>().color = Color.green;
-        
+        sr.sprite = sprites[1];
+
         GetComponent<BoxCollider2D>().enabled = true;
     }
 

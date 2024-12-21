@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetGround: {x: 0, y: 0, z: 0}
   initialPosition: {x: 0, y: 0, z: 0}
-  dmg: 0
+  dmg: 1
   radius: 2
   target: {fileID: 0}
   speed: 25
